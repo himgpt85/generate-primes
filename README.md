@@ -1,5 +1,5 @@
 # Generate primes
-Generate primes is a spring boot based project with RESTful API service. When this API is called, it will generate prime numbers from 2 to ***initial*** sent via request URI
+Generate primes is a spring boot based project with RESTful API service. When this API is called, it will generate prime numbers from 2 to ***initial*** sent via request URI.
 This project uses Java version 8
 
 ## How to build and run the project
