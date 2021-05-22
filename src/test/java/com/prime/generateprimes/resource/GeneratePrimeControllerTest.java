@@ -1,6 +1,5 @@
 package com.prime.generateprimes.resource;
 
-import com.prime.generateprimes.service.GeneratePrimesService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -15,16 +14,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class GeneratePrimeControllerTest {
 
+    private static final String response =
+            "{\"initial\":100,\"primes\":[2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97]}";
+
     @Autowired
     private MockMvc mockMvc;
 
-    @Autowired
-    private GeneratePrimesService generatePrimesService;
-
     @Test
     public void shouldCallGeneratePrimesAndReturnDefaultOkResponseWhenInitialLessThanTwo() throws Exception {
-        GeneratePrimeController generatePrimeController = new GeneratePrimeController(generatePrimesService);
-
         mockMvc.perform(MockMvcRequestBuilders.get("/primes/1"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(content().json("{\"initial\":1,\"primes\":[]}"));
@@ -32,11 +29,29 @@ public class GeneratePrimeControllerTest {
 
     @Test
     public void shouldCallGeneratePrimesAndReturnOkResponse() throws Exception {
-        GeneratePrimeController generatePrimeController = new GeneratePrimeController(generatePrimesService);
-
-        mockMvc.perform(MockMvcRequestBuilders.get("/primes/10"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/primes/100"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(content().json("{\"initial\":10,\"primes\":[2,3,5,7]}"));
+                .andExpect(content().json(response));
     }
 
+    @Test
+    public void shouldCallGeneratePrimesWithBasicAlgorithmAndReturnOkResponse() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/primes/100?algorithm=1"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(content().json(response));
+    }
+
+    @Test
+    public void shouldCallGeneratePrimesWithSquareRootAlgorithmAndReturnOkResponse() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/primes/100?algorithm=2"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(content().json(response));
+    }
+
+    @Test
+    public void shouldCallGeneratePrimesWithSieveAlgorithmAndReturnOkResponse() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/primes/100?algorithm=3"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(content().json(response));
+    }
 }

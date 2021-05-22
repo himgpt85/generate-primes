@@ -9,7 +9,8 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Component
-public class GeneratePrimesService {
+public class GeneratePrimesSquareRootImpl implements GeneratePrimes {
+    @Override
     public PrimeNumber generatePrimes(Integer initial) {
         if (initial < 2) {
             return new PrimeNumber(initial, Collections.emptyList());
