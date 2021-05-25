@@ -39,7 +39,7 @@ public class GeneratePrimeController {
      * API that returns a list of prime numbers from 2 to the upperBound
      *
      * @param initial   upper bound to limit the size of the returned primes
-     * @param algorithm Algorithm to find primes and default to 2 (squareRoot)
+     * @param algorithm Algorithm to use to find primes, default to 3 (Sieve of Eratosthenes)
      * @return initial and list of prime numbers from 2 to initial
      */
     @GetMapping("/primes/{initial}")

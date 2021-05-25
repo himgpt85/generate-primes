@@ -16,8 +16,7 @@ public class GeneratePrimesSieveImplTest {
 
     @Test
     public void shouldGeneratePrimeNumbersWhenInitialGreaterThan1() {
-        Integer[] arr = new Integer[]{2, 3, 5, 7, 11, 13, 17, 19};
-        List<Integer> expectedListOfPrime = Arrays.asList(arr);
+        List<Integer> expectedListOfPrime = Arrays.asList(2, 3, 5, 7, 11, 13, 17, 19);
         PrimeNumber primeNumber = generatePrimesSieve.generatePrimes(20);
         assertEquals(20, primeNumber.getInitial());
         assertEquals(expectedListOfPrime, primeNumber.getPrimes());

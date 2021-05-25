@@ -38,8 +38,10 @@ Visiting http://localhost:8080/primes/10 should return. This will use the defaul
 
 
 #### Example using curl command
-* Default algorithm
+* Default algorithm - sieve of eratosthenes
     1. curl -v http://localhost:8080/primes/10
+        * To show the total time, in seconds, that the full operation lasted:
+        * curl -w "\n\nTime taken = %{time_total} seconds\n" http://localhost:8080/primes/10
     ```
     curl -v http://localhost:8080/primes/10
     *   Trying ::1...
@@ -56,6 +58,14 @@ Visiting http://localhost:8080/primes/10 should return. This will use the defaul
     <
     {"initial":10,"primes":[2,3,5,7]}* Connection #0 to host localhost left intact
     ```
+  
+    ```
+    curl -w "\n\nTime taken = %{time_total} seconds\n" http://localhost:8080/primes/10
+    {"initial":10,"primes":[2,3,5,7],"length":4}
+
+    Time taken = 0.188000 seconds
+    ```
+  
 * Basic algorithm
     1. curl -v http://localhost:8080/primes/10?algorithm=1
     ```*   Trying ::1...
