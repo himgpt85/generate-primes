@@ -98,3 +98,43 @@ Visiting http://localhost:8080/primes/10 should return. This will use the defaul
     <
     {"initial":10,"primes":[2,3,5,7]}* Connection #0 to host localhost left intact
     ```  
+
+### Change content type, defaulted to JSON using curl
+#### By default, Spring web starter parses the request using json format. Add "com.fasterxml.jackson.dataformat:jackson-dataformat-xml" to gradle dependencies to toggle the content type of the response.
+#### Also add produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} to your controller resource to specify the content type of response
+* XML response
+    * curl -v http://localhost:8080/primes/10 --header "Content-Type: application/xml" --header "Accept: application/xml"
+```
+*   Trying ::1...
+* TCP_NODELAY set
+* Connected to localhost (::1) port 8080 (#0)
+> GET /primes/10 HTTP/1.1
+> Host: localhost:8080
+> User-Agent: curl/7.55.1
+> Content-Type: application/xml
+> Accept: application/xml
+>
+< HTTP/1.1 200
+< Content-Type: application/xml
+< Transfer-Encoding: chunked
+<
+<PrimeNumber><initial>10</initial><primes><primes>2</primes><primes>3</primes><primes>5</primes><primes>7</primes></primes></PrimeNumber>* Connection #0 to host localhost left intact
+```
+* JSON response
+    * curl -v http://localhost:8080/primes/10 --header "Content-Type: application/json" --header "Accept: application/json"
+```
+*   Trying ::1...
+* TCP_NODELAY set
+* Connected to localhost (::1) port 8080 (#0)
+> GET /primes/10 HTTP/1.1
+> Host: localhost:8080
+> User-Agent: curl/7.55.1
+> Content-Type: application/json
+> Accept: application/json
+>
+< HTTP/1.1 200
+< Content-Type: application/json
+< Transfer-Encoding: chunked
+<
+{"initial":10,"primes":[2,3,5,7]}* Connection #0 to host localhost left intact
+```

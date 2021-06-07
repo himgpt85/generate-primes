@@ -15,7 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class GeneratePrimeControllerTest {
 
     private static final String response =
-            "{\"initial\":100,\"primes\":[2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97]}";
+            "{\"Initial\":100,\"Primes\":[2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97]}";
 
     @Autowired
     private MockMvc mockMvc;
@@ -24,7 +24,7 @@ public class GeneratePrimeControllerTest {
     public void shouldCallGeneratePrimesAndReturnDefaultOkResponseWhenInitialLessThanTwo() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/primes/1"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(content().json("{\"initial\":1,\"primes\":[]}"));
+                .andExpect(content().json("{\"Initial\":1,\"Primes\":[]}"));
     }
 
     @Test

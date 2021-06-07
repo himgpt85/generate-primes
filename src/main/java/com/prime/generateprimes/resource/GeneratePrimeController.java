@@ -7,6 +7,7 @@ import com.prime.generateprimes.service.GeneratePrimesSquareRootImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,18 +43,18 @@ public class GeneratePrimeController {
      * @param algorithm Algorithm to use to find primes, default to 3 (Sieve of Eratosthenes)
      * @return initial and list of prime numbers from 2 to initial
      */
-    @GetMapping("/primes/{initial}")
+    @GetMapping(value = "/primes/{initial}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public PrimeNumber generatePrimes(@PathVariable("initial") Integer initial,
                                       @RequestParam(value = "algorithm", defaultValue = "3") int algorithm) {
         switch (algorithm) {
             case 1:
-                log.info("Generating prime numbers with basic algorithm and initial " + initial);
+                log.info("Generating prime numbers with basic algorithm and initial {}", initial);
                 return generatePrimesBasic.generatePrimes(initial);
             case 2:
-                log.info("Generating prime numbers with square root algorithm and initial " + initial);
+                log.info("Generating prime numbers with square root algorithm and initial {}", initial);
                 return generatePrimesSquareRoot.generatePrimes(initial);
             default:
-                log.info("Generating prime numbers with sieve algorithm and initial " + initial);
+                log.info("Generating prime numbers with sieve algorithm and initial {}", initial);
                 return generatePrimesSieve.generatePrimes(initial);
         }
     }
