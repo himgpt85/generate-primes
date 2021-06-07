@@ -16,7 +16,7 @@ This project uses three different algorithms for generating prime numbers as fol
 1. Basic algorithm
     * Loops from 2 to ***initial*** and checks each number divisibility from 2 to ***initial***-1
 2. Square root algorithm
-    * Loops from 2 to ***initial*** and check each numbers divisibility from 2 to square root of ***initial*** at least one of the factors must be less than equal to the square root of the ***initial***
+    * Loops from 2 to ***initial*** and check each numbers divisibility from 2 to square root of ***initial***, as at least one of the factors must be less than equal to the square root of the ***initial***
 3. Sieve of Eratosthenes(default)
     * It finds all the prime numbers by iteratively marking each number having factors(composite number) starting with 2 and leaving all the prime numbers unmarked
 
