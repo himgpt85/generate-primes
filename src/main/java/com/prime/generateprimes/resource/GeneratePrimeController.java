@@ -19,22 +19,22 @@ public class GeneratePrimeController {
     Logger log = LoggerFactory.getLogger(GeneratePrimeController.class);
 
     @Autowired
-    private final GeneratePrimesBasicImpl generatePrimesBasic;
+    private GeneratePrimesBasicImpl generatePrimesBasic;
 
     @Autowired
-    private final GeneratePrimesSquareRootImpl generatePrimesSquareRoot;
+    private GeneratePrimesSquareRootImpl generatePrimesSquareRoot;
 
     @Autowired
-    private final GeneratePrimesSieveImpl generatePrimesSieve;
+    private GeneratePrimesSieveImpl generatePrimesSieve;
 
 
-    public GeneratePrimeController(GeneratePrimesBasicImpl generatePrimesBasic,
-                                   GeneratePrimesSquareRootImpl generatePrimesSquareRoot,
-                                   GeneratePrimesSieveImpl generatePrimesSieve) {
-        this.generatePrimesBasic = generatePrimesBasic;
-        this.generatePrimesSquareRoot = generatePrimesSquareRoot;
-        this.generatePrimesSieve = generatePrimesSieve;
-    }
+//    public GeneratePrimeController(GeneratePrimesBasicImpl generatePrimesBasic,
+//                                   GeneratePrimesSquareRootImpl generatePrimesSquareRoot,
+//                                   GeneratePrimesSieveImpl generatePrimesSieve) {
+//        this.generatePrimesBasic = generatePrimesBasic;
+//        this.generatePrimesSquareRoot = generatePrimesSquareRoot;
+//        this.generatePrimesSieve = generatePrimesSieve;
+//    }
 
     /**
      * API that returns a list of prime numbers from 2 to the upperBound
@@ -44,7 +44,7 @@ public class GeneratePrimeController {
      * @return initial and list of prime numbers from 2 to initial
      */
     @GetMapping(value = "/primes/{initial}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public PrimeNumber generatePrimes(@PathVariable("initial") Integer initial,
+    public PrimeNumber generatePrimes(@PathVariable("initial") int initial,
                                       @RequestParam(value = "algorithm", defaultValue = "3") int algorithm) {
         switch (algorithm) {
             case 1:
