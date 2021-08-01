@@ -12,7 +12,7 @@ import java.util.stream.IntStream;
 @Component
 public class GeneratePrimesSieveImpl implements GeneratePrimes {
     @Override
-    public PrimeNumber generatePrimes(Integer initial) {
+    public PrimeNumber generatePrimes(int initial) {
         if (initial < 2) {
             return new PrimeNumber(initial, Collections.emptyList());
         } else {
@@ -21,14 +21,15 @@ public class GeneratePrimesSieveImpl implements GeneratePrimes {
         }
     }
 
-    private List<Integer> retrieveAllPrimes(Integer initial, boolean[] primes) {
+    private List<Integer> retrieveAllPrimes(int initial, boolean[] primes) {
         return IntStream.rangeClosed(2, initial)
+                .parallel()
                 .filter(value -> primes[value])
                 .boxed()
                 .collect(Collectors.toList());
     }
 
-    private boolean[] markAllComposites(Integer initial) {
+    private boolean[] markAllComposites(int initial) {
         //Array of booleans with indexes till initial
         boolean[] primes = new boolean[initial + 1];
         //Mark all indexes as true initially

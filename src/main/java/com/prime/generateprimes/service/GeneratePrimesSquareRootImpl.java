@@ -11,7 +11,7 @@ import java.util.stream.IntStream;
 @Component
 public class GeneratePrimesSquareRootImpl implements GeneratePrimes {
     @Override
-    public PrimeNumber generatePrimes(Integer initial) {
+    public PrimeNumber generatePrimes(int initial) {
         if (initial < 2) {
             return new PrimeNumber(initial, Collections.emptyList());
         } else {

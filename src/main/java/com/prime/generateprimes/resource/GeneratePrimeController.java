@@ -7,6 +7,7 @@ import com.prime.generateprimes.service.GeneratePrimesSquareRootImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,6 +28,14 @@ public class GeneratePrimeController {
     private GeneratePrimesSieveImpl generatePrimesSieve;
 
 
+//    public GeneratePrimeController(GeneratePrimesBasicImpl generatePrimesBasic,
+//                                   GeneratePrimesSquareRootImpl generatePrimesSquareRoot,
+//                                   GeneratePrimesSieveImpl generatePrimesSieve) {
+//        this.generatePrimesBasic = generatePrimesBasic;
+//        this.generatePrimesSquareRoot = generatePrimesSquareRoot;
+//        this.generatePrimesSieve = generatePrimesSieve;
+//    }
+
     /**
      * API that returns a list of prime numbers from 2 to the upperBound
      *
@@ -34,8 +43,8 @@ public class GeneratePrimeController {
      * @param algorithm Algorithm to use to find primes, default to 3 (Sieve of Eratosthenes)
      * @return initial and list of prime numbers from 2 to initial
      */
-    @GetMapping("/primes/{initial}")
-    public PrimeNumber generatePrimes(@PathVariable("initial") Integer initial,
+    @GetMapping(value = "/primes/{initial}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public PrimeNumber generatePrimes(@PathVariable("initial") int initial,
                                       @RequestParam(value = "algorithm", defaultValue = "3") int algorithm) {
         switch (algorithm) {
             case 1:

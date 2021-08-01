@@ -1,15 +1,19 @@
 package com.prime.generateprimes.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
 public class PrimeNumber {
     private Integer initial;
     private List<Integer> primes;
 
+    @JsonProperty("Initial")
     public Integer getInitial() {
         return initial;
     }
 
+    @JsonProperty("Primes")
     public List<Integer> getPrimes() {
         return primes;
     }
