@@ -18,22 +18,14 @@ public class GeneratePrimeController {
     Logger log = LoggerFactory.getLogger(GeneratePrimeController.class);
 
     @Autowired
-    private final GeneratePrimesBasicImpl generatePrimesBasic;
+    private GeneratePrimesBasicImpl generatePrimesBasic;
 
     @Autowired
-    private final GeneratePrimesSquareRootImpl generatePrimesSquareRoot;
+    private GeneratePrimesSquareRootImpl generatePrimesSquareRoot;
 
     @Autowired
-    private final GeneratePrimesSieveImpl generatePrimesSieve;
+    private GeneratePrimesSieveImpl generatePrimesSieve;
 
-
-    public GeneratePrimeController(GeneratePrimesBasicImpl generatePrimesBasic,
-                                   GeneratePrimesSquareRootImpl generatePrimesSquareRoot,
-                                   GeneratePrimesSieveImpl generatePrimesSieve) {
-        this.generatePrimesBasic = generatePrimesBasic;
-        this.generatePrimesSquareRoot = generatePrimesSquareRoot;
-        this.generatePrimesSieve = generatePrimesSieve;
-    }
 
     /**
      * API that returns a list of prime numbers from 2 to the upperBound
@@ -47,13 +39,13 @@ public class GeneratePrimeController {
                                       @RequestParam(value = "algorithm", defaultValue = "3") int algorithm) {
         switch (algorithm) {
             case 1:
-                log.info("Generating prime numbers with basic algorithm and initial " + initial);
+                log.info("Generating prime numbers with basic algorithm and initial {}", initial);
                 return generatePrimesBasic.generatePrimes(initial);
             case 2:
-                log.info("Generating prime numbers with square root algorithm and initial " + initial);
+                log.info("Generating prime numbers with square root algorithm and initial {}", initial);
                 return generatePrimesSquareRoot.generatePrimes(initial);
             default:
-                log.info("Generating prime numbers with sieve algorithm and initial " + initial);
+                log.info("Generating prime numbers with sieve algorithm and initial {}", initial);
                 return generatePrimesSieve.generatePrimes(initial);
         }
     }
